@@ -90,10 +90,10 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// @router POST api/users/:id
+// @router GET api/users/:id
 // @desc Current logged in user
 // @access Private
-router.post("/:id", middleware, async (req, res) => {
+router.get("/:id", middleware, async (req, res) => {
   try {
     let user = await User.findOne({ _id: req.params.id });
     if (user) {

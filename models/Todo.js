@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const TodoSchema = new mongoose.Schema({
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user"
-  },
   date: {
     type: Date,
     default: Date.now
