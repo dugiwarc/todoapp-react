@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb://localhost:27017/todoapp",
+    "mongoURI": "mongodb://localhost:27017/master-challenge",
     "jwtSecret": "mysecrettoken"
 }
