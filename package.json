@@ -1,0 +1,37 @@
+{
+  "name": "todoapp-react",
+  "version": "1.0.0",
+  "description": "todoapp",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dugiwarc/todoapp-react.git"
+  },
+  "keywords": [
+    "react",
+    "todoapp"
+  ],
+  "author": "George <gheorghe.botnaru@aol.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.1.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "mongoose": "^5.5.11"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.19.1"
+  },
+  "bugs": {
+    "url": "https://github.com/dugiwarc/todoapp-react/issues"
+  },
+  "homepage": "https://github.com/dugiwarc/todoapp-react#readme"
+}
