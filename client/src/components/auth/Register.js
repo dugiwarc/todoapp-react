@@ -1,10 +1,17 @@
 import React, { Fragment, useState } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
+import PropTypes from "prop-types";
+
 // import axios from "axios";
 
-const Login = () => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
+    password2: ""
   });
 
   const { email, password, password2 } = formData;
@@ -18,9 +25,9 @@ const Login = () => {
   const onSubmit = async evt => {
     evt.preventDefault();
     if (password !== password2) {
-      console.log("Password do not match");
+      setAlert("Passwords do not match", "warning");
     } else {
-      console.log("Success");
+      register({ email, password });
       // const newUser = {
       //   email,
       //   password
@@ -42,6 +49,10 @@ const Login = () => {
       // }
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/api/todos" />;
+  }
 
   return (
     <Fragment>
@@ -82,4 +93,17 @@ const Login = () => {
   );
 };
 
-export default Login;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { setAlert, register }
+)(Register);

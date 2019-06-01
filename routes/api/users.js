@@ -7,7 +7,23 @@ const config = require("config");
 
 const User = require("../../models/User");
 
-// @router  POST api/user/login
+// @router GET api/users/auth
+// @desc Test route
+// @access Public
+// router.get("/auth", middleware, async (req, res) => {
+//   console.log("AUTH ROUTE", user);
+//   try {
+//     let user = await User.findOne({ _id: req.params.id }).select("-password");
+//     if (user) {
+//       return res.status(200).json({ user });
+//     }
+//   } catch (err) {
+//     console.log("AUTH ROUTER");
+//     res.status(500).send("Server error");
+//   }
+// });
+
+// @router  POST api/users/login
 // @desc    Login user & get token
 // @access  Public
 router.post("/login", async (req, res) => {
@@ -39,7 +55,7 @@ router.post("/login", async (req, res) => {
         res
           .cookie("token", token, { httpOnly: true })
           .status(200)
-          .json({ msg: "Successfully logged in" });
+          .json({ token });
       }
     );
   } catch (err) {
@@ -47,7 +63,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// @router POST api/users
+// @router POST api/users/register
 // @desc Register user
 // @access Public
 router.post("/register", async (req, res) => {
@@ -82,13 +98,15 @@ router.post("/register", async (req, res) => {
       { expiresIn: 36000 },
       (err, token) => {
         if (err) throw err;
-        res.json({ msg: "User successfully registered" });
+        res.json({ token });
       }
     );
   } catch (err) {
     res.status(500).send("Server error");
   }
 });
+
+router.get("/hello", (req, res) => res.send("HEllo"));
 
 // @router GET api/users/:id
 // @desc Current logged in user

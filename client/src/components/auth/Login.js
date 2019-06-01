@@ -1,6 +1,10 @@
 import React, { Fragment, useState } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { login } from "../../actions/auth";
+import PropTypes from "prop-types";
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -14,10 +18,15 @@ const Login = () => {
       [evt.target.name]: evt.target.value
     });
 
-  const onSubmit = evt => {
+  const onSubmit = async evt => {
     evt.preventDefault();
-    console.log("Success");
+    console.log("HERE");
+    login({ email, password });
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/api/todos" />;
+  }
 
   return (
     <Fragment>
@@ -48,4 +57,16 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
