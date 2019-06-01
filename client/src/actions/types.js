@@ -6,3 +6,6 @@ export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+export const GET_TODOS = "GET_TODOS";
+export const TODO_ERROR = "TODO_ERROR";
+export const DELETE_TODO = "DELETE_TODO";

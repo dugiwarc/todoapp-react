@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layouts/Navbar";
 import Landing from "./components/layouts/Landing";
+import Todos from "./components/layouts/Todos";
 import Todo from "./components/layouts/Todo";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -38,7 +39,8 @@ const App = () => {
             <Switch>
               <Route exact path="/api/users/register" component={Register} />
               <Route exact path="/api/users/login" component={Login} />
-              <Route exact path="/api/todos" component={Todo} />
+              <Route exact path="/api/todos" component={Todos} />
+              <Route exact path="/api/todos/:id" component={Todo} />
             </Switch>
           </section>
         </Fragment>

@@ -6,8 +6,8 @@ const Todo = require("../../models/Todo");
 
 // @router GET api/todo/:id
 // @desc Get todo by id
-// @access Private
-router.get("/:id", middleware, async (req, res) => {
+// @access Public
+router.get("/:id", async (req, res) => {
   try {
     let todo = await Todo.findOne({ _id: req.params.id });
     if (todo) {
@@ -20,8 +20,8 @@ router.get("/:id", middleware, async (req, res) => {
 
 // @router GET api/todo/
 // @desc Get all todos
-// @access Private
-router.get("/", middleware, async (req, res) => {
+// @access Public
+router.get("/", async (req, res) => {
   try {
     let todos = await Todo.find();
     if (todos) {
@@ -46,11 +46,11 @@ router.delete("/:id", middleware, async (req, res) => {
 
 // @router POST api/todos/
 // @desc Create todo
-// @access Private
-router.post("/", middleware, async (req, res) => {
+// @access Public
+router.post("/", async (req, res) => {
   try {
-    const { task } = req.body;
-    const todo = new Todo({ task });
+    const { title } = req.body;
+    const todo = new Todo({ title });
     await todo.save();
     if (todo) {
       return res.status(200).json({ todo });

@@ -5,18 +5,10 @@ const TodoSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  task: [
-    {
-      title: {
-        type: String,
-        required: true
-      },
-      isCompleted: {
-        type: Boolean,
-        default: false
-      }
-    }
-  ]
+  title: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = Todo = mongoose.model("todo", TodoSchema);
